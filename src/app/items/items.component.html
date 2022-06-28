@@ -1,0 +1,13 @@
+<div>
+  <h1>Auction Items</h1>
+  <div class="grid grid-cols-5 gap-10">
+    <span *ngFor="let item of auctionItemsArray">
+      <h1 class="font-semibold">{{ item.title }}</h1>
+      <div class="flex">
+        <h2>Album:</h2>
+        <h2>{{ item.albumId }}</h2>
+      </div>
+      <img src="{{ item.url }}" alt="item image" width="500" height="600" />
+    </span>
+  </div>
+</div>

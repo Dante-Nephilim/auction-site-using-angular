@@ -1,0 +1,7 @@
+export interface auctionItem {
+  albumId: number;
+  id: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+}
