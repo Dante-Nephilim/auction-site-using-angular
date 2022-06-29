@@ -1,0 +1,14 @@
+<div
+  *ngFor="let item of cartItems.keys()"
+  class="flex items-align text-center gap-5"
+>
+  <img src="{{ item.thumbnailUrl }}" alt="thumbnail of item" />
+  <div class="flex flex-col justify-center">
+    <p class="text-red-900 text-sm">{{ item.title }}</p>
+  </div>
+  <div class="flex flex-col justify-center">
+    <p class="text-red-900 text-sm">{{ cartItems.get(item) }}</p>
+  </div>
+  <button (click)="addItemToCart(item)" class="border-2">+</button>
+  <button (click)="removeItemFromCart(item)" class="border-2">-</button>
+</div>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { auctionItem } from '../Items';
+import { ItemsService } from '../items.service';
 
 @Component({
   selector: 'app-items',
@@ -10,18 +10,15 @@ import { auctionItem } from '../Items';
 export class ItemsComponent implements OnInit {
   responseFromApi: any;
   auctionItemsArray: auctionItem[] = [];
-  constructor(private http: HttpClient) {}
-
+  constructor(private itemService: ItemsService) {}
+  @Output() itemToCart = new EventEmitter<auctionItem>();
   ngOnInit(): void {
-    this.http
-      .get('https://jsonplaceholder.typicode.com/photos')
-      .subscribe((Response) => {
-        // console.log(Response);
-        this.responseFromApi = Response;
-        // console.log(this.responseFromApi);
-        this.auctionItemsArray = this.responseFromApi;
-        // console.log(this.responseFromApi);
-        console.log(this.auctionItemsArray);
-      });
+    this.itemService.getItems().subscribe((items) => {
+      this.auctionItemsArray = items;
+    });
+    console.log(this.auctionItemsArray);
+  }
+  addItemToCart(item: auctionItem): void {
+    this.itemToCart.emit(item);
   }
 }
